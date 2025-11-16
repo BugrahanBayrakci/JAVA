@@ -76,9 +76,37 @@ public class Main {
         }
 
         System.out.println("----------------------------------");
+        int sayi=10;
+        do{
+            System.out.println(sayi);//en az bir sefer çalışıyor.
+        }while (sayi<10);
+
+        System.out.println("----------------------------------");
+        //DİZİ OLUŞTURMA 1
+
+
+        int [] dizi=new int[3];
+
+        dizi[0] = 1;
+        dizi[1] = 2;
+        dizi[2] = 3;
+
+        //DİZİ OLUŞTURMA 2
+
+        int[] dizi2 = {1, 2, 3, 4, 5};
+
+        //ERİŞİM 1
+        for (int i : dizi) {
+            System.out.println(i);
+        }
+        //ERİŞİM2
+        for(int i=0;i<4;i++){
+            System.out.println(dizi2[i]);
+        }
 
 
 
+        
 
     }
 }
