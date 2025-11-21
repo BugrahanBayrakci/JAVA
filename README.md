@@ -41,6 +41,8 @@ System.out.println(topla2());
 
 ### STACK ve HEAP Nedir? (Java için)
 
+
+
 1) STACK (küçük, hızlı alan)
 
 Metodların çalıştığı yer
@@ -62,3 +64,19 @@ Garbage Collector bu alanı temizler.
 ![s][resim]
 
 [resim]: ./source/Ekran%20Alıntısı.PNG
+
+
+ ## Referance TYPE⚠️⚠️⚠️
+```java
+int[] sayilar1 = new int[]{1, 2, 3};
+int[] sayilar2 = new int[]{4, 5, 6};
+sayilar2 = sayilar1;
+sayilar1[0] = 10;
+System.out.println(sayilar2[0]);
+```
+
+
+1) Başlangıçta iki ayrı dizi oluşuyor. Bu iki dizi farklı yerlerde bellekte duruyor.
+2) sayilar2 = sayilar1; Bu satır diziyi kopyalamaz!
+→ sayilar2 artık sayilar1'in tuttuğu diziyi göstermeye başlar.(Bellek bölgesini). Artık ortada tek bir dizi var, iki isim var.
+3) sayilar1[0] = 10; Bu satır o ortak dizinin ilk elemanını değiştirir: Ve iki değişken de bunu görür:
