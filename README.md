@@ -80,3 +80,53 @@ System.out.println(sayilar2[0]);
 2) sayilar2 = sayilar1; Bu satır diziyi kopyalamaz!
 → sayilar2 artık sayilar1'in tuttuğu diziyi göstermeye başlar.(Bellek bölgesini). Artık ortada tek bir dizi var, iki isim var.
 3) sayilar1[0] = 10; Bu satır o ortak dizinin ilk elemanını değiştirir: Ve iki değişken de bunu görür:
+
+
+
+⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
+
+### POLYMORPHISM
+![s][resim1]
+
+[resim1]: ./source/POLYMORPHISM.png
+
+FileLogger, EmailLogger, DatabaseLogger BaseLogger sınıfından extends ile türetilmiş.
+
+```java
+class FileLogger extends BaseLogger
+```
+FileLogger aslında bir BaseLogger’dır.
+
+| Tür                                     | Geçerli mi?                                |
+| --------------------------------------- | ------------------------------------------ |
+| `BaseLogger logger = new FileLogger();` | ✅ Evet                                     |
+| `FileLogger logger = new BaseLogger();` | ❌ Hayır (çünkü BaseLogger daha üst seviye) |
+
+```java
+
+BaseLogger[] loggers = new BaseLogger[] {
+    new FileLogger(),
+    new EmailLogger(),
+    new DatabaseLogger()
+};
+```
+
+Bu dizideki her eleman BaseLogger türünde davrandığı sürece, hangi alt sınıf olduğunun önemi yok
+```java
+
+for(BaseLogger logger : loggers) {
+    logger.log("Hello");
+}
+```
+✔ "Sen aslında bir FileLogger'sın → FileLogger.log() çalıştırayım."
+
+✔ "Sen EmailLogger'sın → EmailLogger.log() çalıştırayım."
+
+✔ "Sen DatabaseLogger'sın → DatabaseLogger.log() çalıştırayım."
+
+![s][resim2]
+
+[resim2]: ./source/POLYMORPHISMCİKTİ.png
+
+
+Şimdi base içinde bir metot yazdın sonra extends alan başka classlarda aynı isimde metot yazarsan basede olan değilde özel olarak extends eden çalışır. Final yazarsan override olmayacak.
