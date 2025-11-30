@@ -130,3 +130,61 @@ for(BaseLogger logger : loggers) {
 
 
 Şimdi base içinde bir metot yazdın sonra extends alan başka classlarda aynı isimde metot yazarsan basede olan değilde özel olarak extends eden çalışır. Final yazarsan override olmayacak.
+
+
+## ABSTRACT CLASS
+
+1️⃣ Ortak bir temel yapı sağlamak (kalıp oluşturmak)
+
+Bir grup sınıfın ortak özellikleri varsa, bunları abstract class içinde toplarsın.
+
+Örnek:
+
+Kadın oyuncu
+
+Erkek oyuncu
+
+Çocuk oyuncu
+
+2️⃣ Alt sınıflara “bu metodu kesin yazacaksın” zorunluluğu koymak
+```java
+
+public abstract class GameCalculator {
+    public abstract void hesapla(); // alt sınıf bunu yazmak zorunda belirli bir kalıp oluşturduk.
+}
+
+
+```
+2️⃣ Bazı metodları zorunlu kılmak
+
+
+Abstract class obje oluşturulamaz.
+
+```java
+GameCalculator calc = new GameCalculator(); // ❌
+```
+Abstract class'lar:
+
+✔ Gövdeli metod içerir → ortak kod.
+
+✔ Gövdesiz metod (abstract) içerir → zorunlu metod.
+
+✔ Değişken ve constructor içerir.
+
+✔ Inheritance kullanır amacı budur zaten.
+
+
+
+| Özellik               | Abstract Class                    | Interface                                        |
+| --------------------- | --------------------------------- | ------------------------------------------------ |
+| Abstract metod        | ✔️                                | ✔️                                               |
+| Gövdeli metod         | ✔️                                | ✔️ (default ile, ama sınırlı)                    |
+| Constructor           | ✔️                                | ❌                                                |
+| Değişken / alan tutma | ✔️                                | ❌ (sadece sabit public static final değişkenler) |
+| Kalıtım               | 1 tane extend edilebilir          | Birden fazla interface implement edilebilir      |
+| Amaç                  | Ortak temel yapı + kısmi davranış | Sadece davranış sözleşmesi                       |
+| Obje oluşturulabilir  | ❌                                 | ❌                                                |
+
+Abstract class = hem ortak kod hem zorunlu metodlar.
+
+Interface = sadece kurallar (sözleşme), çoklu kalıtım.
