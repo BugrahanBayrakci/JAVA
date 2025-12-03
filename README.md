@@ -188,3 +188,106 @@ Abstract class'lar:
 Abstract class = hem ortak kod hem zorunlu metodlar.
 
 Interface = sadece kurallar (sözleşme), çoklu kalıtım.
+
+
+### STATİC
+
+Program başlıyor → Class Loader yükler → static şeyler hafızaya alınır → program bitene kadar silinmez.
+
+static = sınıfa ait olan, program boyunca tek olan, objeye bağlı olmayan.
+
+Bunu şöyle düşün:
+🍔 Non-static
+
+Her oyuncuya ayrı hamburger veriliyor.
+
+🏛 Static
+
+Ortada tek bir pizza var, herkes ondan alıyor.
+
+Static şeyler bir nesneye (object) ait değildir.
+Class’a aittir.
+Ve Java bunları program başlarken otomatik oluşturur.
+
+
+Mesela static değişken oluşturursan herkeste aynı değer olur. Nesneye bağlı değil.
+
+Bir metodu static yaparsan class ismiyle çağırabilirsin.
+```java
+
+
+class MathUtils {
+    static void hello() {
+        System.out.println("Selam kral");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        MathUtils.hello(); // OBJECT OLUŞTURMADAN çağırdık
+
+    }
+}
+```
+static olmassa 
+
+```java
+MathUtils m = new MathUtils();
+m.hello();   // static değilse böyle çağırırsın
+```
+
+⚠️⚠️⚠️⚠️⚠️⚠️ Constructlar sadece obje oluşturulduğunda çağrıldığı için statikte class adıyla çağırdığımda construct çalışmayacak. Bunu yapmak için static yapıcı koyulması gerekmektedir. Birden fazla oluşturulabilir.
+
+🔥 static → sınıfın metodu
+
+🔥 non-static → nesnenin metodu
+
+```java
+class Example {
+    static {
+        System.out.println("Static block çalıştı!");
+    }
+
+    Example() {
+        System.out.println("Constructor çalıştı!");
+    }
+
+    static void test() {
+        System.out.println("Static method");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Example.test(); // sadece static method
+    }
+}
+```
+Çıktı 
+
+Static block çalıştı!
+
+Static method
+
+🔥 INNER CLASS NEDİR?
+Bir sınıfın içinde tanımlanan başka bir sınıftır.
+```java
+class Outer {
+    class Inner { }
+}
+```
+
+Ana class static olamıyor onun içine yazdığın class static olabilir.
+
+```java
+class Outer {
+    static int a = 5;
+
+    static class Inner {
+        void show() {
+            System.out.println("a = " + a);
+        }
+    }
+}
+```
