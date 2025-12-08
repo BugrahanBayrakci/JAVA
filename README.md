@@ -291,3 +291,277 @@ class Outer {
     }
 }
 ```
+### COLLECTİONS
+
+Java’da normal array sınırlı bir şeydi:
+
+Boyut sabit
+
+Insert/silme zor
+
+### 1️⃣  ArrayList
+
+⭐ 1. ArrayList Oluşturma
+
+```java
+import java.util.ArrayList;
+public class Main {
+ArrayList sayilar =new ArrayList();
+
+}
+```
+
+Type-Safe ArrayList
+
+```java
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        ArrayList<String> liste = new ArrayList<String>();
+
+        liste.add("Ali");
+        liste.add("Veli");
+        liste.add("Ayşe");
+        liste.add("Ali"); // tekrar OK
+
+        System.out.println(liste);
+    }
+}
+```
+
+⭐ 2. Eleman Ekleme — add()
+```java
+isimler.add("Ali");
+isimler.add("Veli");
+isimler.add("Ayşe");
+```
+⭐ 3. Eleman Çekme — get()
+```java
+
+System.out.println(isimler.get(0)); // Ali
+
+⭐ 4. Eleman Değiştirme — set()
+```java
+
+isimler.set(0, "Kerem"); // Ali → Kerem oldu
+```
+
+⭐ 5. Eleman Silme — remove()
+```java
+
+isimler.remove("Veli");
+isimler.remove(0);
+```
+⚠️ indise göre silince sola kayıyor indisler unutma
+
+
+⭐ 6. Liste Boyutu — size()
+```java
+System.out.println(isimler.size());
+```
+⭐ 8. Tüm listeyi yazdırma
+```java
+
+System.out.println(isimler);
+```
+⭐ 9. Döngü ile gezme
+```java
+
+for (int i = 0; i < isimler.size(); i++) {
+    System.out.println(isimler.get(i));
+}
+// foreach ile gez.
+
+for (String isim : isimler) {
+    System.out.println(isim);
+}
+```
+⭐ 10. Temizleme
+```java
+isimler.clear();
+```
+⚠️ İndisler boş olursa hata verecek.
+
+
+ArrayList Classlarla kullanmak
+```java
+
+public class Student {
+    String name;
+    int age;
+
+    public Student(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void showInfo() {
+        System.out.println("Name: " + name + ", Age: " + age);
+    }
+}
+```
+```java
+
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+
+        ArrayList<Student> students = new ArrayList<>();
+
+        students.add(new Student("Ahmet", 20));
+        students.add(new Student("Mehmet", 22));
+        students.add(new Student("Ayşe", 19));
+
+        for (Student s : students) {
+            s.showInfo();
+        }
+    }
+}
+```
+
+
+### 2️⃣   HASHMAP
+  Önemli indis yok anahtarla erişim var sıralı değildir
+
+
+HashMap = Key → Value sistemi
+⭐ 1. HashMap oluşturma
+```java
+HashMap<String, Integer> map = new HashMap<>();
+```
+
+String → key tipi
+
+Integer → value tipi
+
+⭐ 2. Eleman Ekleme — put()
+```java
+
+map.put("Ahmet", 90);
+map.put("Mehmet", 75);
+map.put("Ayşe", 100);
+```
+⭐ 3. Eleman Okuma — get()
+```java
+
+int not = map.get("Ayşe");
+System.out.println(not);
+```
+⭐ 4. Eleman Silme — remove()
+```java
+
+map.remove("Mehmet");
+```
+⭐ 5. Eleman Var mı? — containsKey() / containsValue()
+```java
+
+map.containsKey("Ahmet"); // true
+map.containsValue(100);   // true
+```
+
+⭐ 6. Boyut — size()
+```java
+
+System.out.println(map.size());
+```
+
+⭐ 7. Tüm Elemanları Gezmek
+```java
+
+for (String key : map.keySet()) {
+    System.out.println(key + " → " + map.get(key));
+}
+```
+
+### Exception Handling (Hata yönetimi)
+
+Program çalışırken oluşan hatalara exception denir.
+
+
+
+![s][resim3]
+
+[resim3]: ./source/ExceptionHierarchy.PNG
+```
+Throwable
+   |-- Exception (Checked)
+         |-- RuntimeException (Unchecked)
+   |-- Error (Unchecked)
+ ```
+✔️ Checked Exception
+
+Derleme zamanında (compile time) kontrol edilir
+
+Kod yazarken IDE uyarır
+
+Örnekler: IOException, FileNotFoundException, SQLException
+
+✔️ Unchecked Exception
+
+Çalışma anında (runtime) oluşur
+
+IDE uyarmaz
+
+Örnekler: NullPointerException, ArithmeticException, IndexOutOfBoundsException
+
+
+### 🔥 2) try – catch – finally
+```java
+
+try {
+    int x = 10 / 0;
+} catch (ArithmeticException e) {
+    System.out.println("Sıfıra bölme hatası!");
+}
+```
+
+try: Riskli kod
+
+catch: Hata olduğunda çalışır
+
+finally: Hata olsa da olmasa da her zaman çalışır
+
+```java
+
+try {
+    String s = null;
+    System.out.println(s.length());
+} catch (NullPointerException e) {
+    System.out.println("Boş nesne hatası!");
+} finally {
+    System.out.println("Bu her zaman çalışır");
+}
+```
+
+```java
+
+try {
+    int arr[] = {1, 2};
+    System.out.println(arr[5]);
+} catch (ArithmeticException e) {
+    System.out.println("Matematik hatası");
+} catch (ArrayIndexOutOfBoundsException e) {
+    System.out.println("Dizi dışı hata!");
+}
+```
+
+| Yapı      | Ne işe yarar?                         |
+| --------- | ------------------------------------- |
+| `try`     | Riskli kod                            |
+| `catch`   | Hata olunca çalışır                   |
+| `finally` | Her zaman çalışır                     |
+| `throw`   | Manuel hata fırlatır                  |
+| `throws`  | Metodun hata fırlatabileceğini söyler |
+| Checked   | Derleme zamanında zorunlu             |
+| Unchecked | Runtime’da ortaya çıkar               |
+
+###  🔥 3) throws (metodun hata atabileceğini söylemek)
+```java
+
+public void readFile() throws IOException {
+    FileReader fr = new FileReader("test.txt");
+}
+```
+throws → “Bu metot hata fırlatabilir, try-catch ile yakalayın” demektir.
