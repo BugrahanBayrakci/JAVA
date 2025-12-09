@@ -565,3 +565,192 @@ public void readFile() throws IOException {
 }
 ```
 throws → “Bu metot hata fırlatabilir, try-catch ile yakalayın” demektir.
+
+
+🚀 THROW NEDİR?
+
+Normalde hatayı Java atar — ama sen özel olarak hata oluşturmak istersen throw kullanırsın.
+
+```java
+
+public void setAge(int age) {
+    if (age < 0) {
+        throw new IllegalArgumentException("Yaş negatif olamaz!");
+    }
+    this.age = age;
+}
+```
+```java
+
+public void withdraw(int amount) {
+    if (amount > balance) {
+        throw new RuntimeException("Yetersiz bakiye!");
+    }
+
+    balance -= amount;
+}
+```
+
+| Konu                                    | Açıklama                     |
+| --------------------------------------- | ---------------------------- |
+| **throw**                               | Hemen bir hata fırlatır      |
+| **throw new ...**                       | Yeni bir exception oluşturur |
+| **Program o satırdan sonrası çalışmaz** | Evet durur                   |
+| **Tek bir exception fırlatır**          | Birden fazla olmaz           |
+
+
+
+### 🛠️ CUSTOM EXCEPTION OLUŞTURMA
+
+
+1️⃣ class oluştur → Exception’ı extend et
+
+```java
+
+public class InvalidAgeException extends Exception {
+
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}
+```
+```java
+public void setAge(int age) throws InvalidAgeException {
+
+    if (age < 0) {
+        throw new InvalidAgeException("Yaş negatif olamaz!");
+    }
+
+    this.age = age;
+}
+
+```
+
+### Java Dosyalarla Çalışmak
+
+#### 1️⃣ Dosya oluşturma
+
+```java
+   File dosya=new File("C:\\Users\\BugoR\\Documents\\GitHub\\JAVA\\files\\students.txt");
+        try {
+            dosya.createNewFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+```
+
+dosya.createNewFile(); true veya false döndürüyor.
+
+```java
+
+File file=new File("C:\\Users\\BugoR\\Documents\\GitHub\\JAVA\\files\\students.txt");
+
+        System.out.println("Adı: " + file.getName());
+        System.out.println("Yolu: " + file.getAbsolutePath());
+        System.out.println("Var mı?: " + file.exists());
+        System.out.println("Boyut (byte): " + file.length());
+        System.out.println("Okunabilir mi?: " + file.canRead());
+        System.out.println("Yazılabilir mi?: " + file.canWrite());
+        System.out.println("Bir klasör mü?: " + file.isDirectory());
+```
+
+
+
+🚀 Scanner ile Dosya Okuma
+
+```java
+import java.io.File;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            File file = new File("data.txt");
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()) {  
+                String line = scanner.nextLine();
+                System.out.println(line);
+            }
+
+            scanner.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+2. yöntem.
+
+```java
+
+import java.nio.file.*;
+import java.util.List;
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        List<String> lines = Files.readAllLines(Path.of("data.txt"));
+
+        for (String line : lines) {
+            System.out.println(line);
+        }
+    }
+}
+```
+
+
+Dosyalara yazmak 
+
+```java
+
+import java.io.FileWriter;
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            FileWriter writer = new FileWriter("data.txt");
+            writer.write("Merhaba bro!\n");
+            writer.write("Java dosyaya yazıyor.");
+            writer.close();   // kapatmazsan yazmaz
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+✔️ Özellik:
+
+Dosya yoksa oluşturur
+
+Üzerine yazar (eskiyi siler)
+
+
+🚀 2. FileWriter + append = true → Üzerine EKLEME
+
+```java
+
+FileWriter writer = new FileWriter("data.txt", true);
+writer.write("Yeni satır ekledim bro\n");
+writer.close();
+```
+
+```java
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+
+public class Main {
+    public static void main(String[] args) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("data.txt"))) {
+            writer.write("Satır 1");
+            writer.newLine();
+            writer.write("Satır 2");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
