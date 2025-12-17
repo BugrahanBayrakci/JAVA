@@ -8,7 +8,7 @@ import java.io.IOException;
 public class Main {
     static void main() {
 
-
+        dosyaOlustur();
 
         dosyaBilgileriniYazdir();
 
