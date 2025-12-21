@@ -80,8 +80,81 @@ System.out.println(sayilar2[0]);
 2) sayilar2 = sayilar1; Bu satır diziyi kopyalamaz!
 → sayilar2 artık sayilar1'in tuttuğu diziyi göstermeye başlar.(Bellek bölgesini). Artık ortada tek bir dizi var, iki isim var.
 3) sayilar1[0] = 10; Bu satır o ortak dizinin ilk elemanını değiştirir: Ve iki değişken de bunu görür:
+```java
+
+CustomerManager customerManager = new CustomerManager();
+CustomerManager customerManager2 = new CustomerManager();
+
+customerManager = customerManager2;
 
 
+```
+🚨 NESNE KOPYALANMIYOR!
+
+🚨 SADECE REFERANS ATANIYOR!
+
+🚨  öbür customer menager Java Garbage Collector onu siler
+
+Çünkü artık hiçbir referans göstermiyor.
+
+ BU OLAY REFERANCE TİPLERİ İÇİN GEÇERLİDİR.
+
+🔹 1️⃣ Primitive Types (Değer Tipleri)
+
+ | Tip       | Boyut       | Örnek                |
+| --------- | ----------- | -------------------- |
+| `byte`    | 1 byte      | `byte b = 10;`       |
+| `short`   | 2 byte      | `short s = 20;`      |
+| `int`     | 4 byte      | `int i = 100;`       |
+| `long`    | 8 byte      | `long l = 100L;`     |
+| `float`   | 4 byte      | `float f = 1.5f;`    |
+| `double`  | 8 byte      | `double d = 2.5;`    |
+| `char`    | 2 byte      | `char c = 'A';`      |
+| `boolean` | JVM’e bağlı | `boolean ok = true;` |
+
+* Değer kopyalanır
+
+* null olamaz
+
+* Metot gönderiminde değer gider
+
+
+🔹 2️⃣ Reference Types (Referans Tipleri)
+
+Heap’teki nesnenin adresini tutarlar.
+
+
+class
+
+interface
+
+array
+
+enum
+
+String (özel ama reference)
+
+
+📌 Özellikler:
+
+* null olabilir
+
+* Referans kopyalanır
+
+* Metotlara adres gider
+
+🔥 EN ÖNEMLİ KARŞILAŞTIRMA
+```java
+
+int a = 5;
+int b = a;
+b = 10; // a değişmez
+
+
+Customer c1 = new Customer();
+Customer c2 = c1;
+c2.name = "Ali"; // c1 de etkilenir
+```
 
 ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
 
