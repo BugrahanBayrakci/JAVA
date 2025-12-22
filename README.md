@@ -827,3 +827,65 @@ public class Main {
     }
 }
 ```
+
+## GENERİCS
+
+Generics, sınıf, interface ve metotların, kullanılacağı anda belirlenen bir türle çalışacak şekilde yazılmasını sağlar ve derleme zamanında tip güvenliği sunar.
+
+❌ Generics OLMADAN (Eski Tip)
+```java
+
+ArrayList list = new ArrayList();
+list.add("Java");
+list.add(10);
+
+String s = (String) list.get(1); // ❌ Runtime error
+```
+✅ Generics İLE
+```java
+
+ArrayList<String> list = new ArrayList<>();
+list.add("Java");
+// list.add(10); ❌ Compile time error
+```
+
+### Generic Sınıf Oluşturma
+```java
+
+class Box<T> {
+    T value;
+
+    void set(T value) {
+        this.value = value;
+    }
+
+    T get() {
+        return value;
+    }
+}
+```
+Kullanım
+
+```java
+
+Box<Integer> box = new Box<>();
+box.set(5);
+int x = box.get();
+```
+🔹 Generic Method
+```java
+
+public class Utils {
+    public static <T> void print(T value) {
+        System.out.println(value);
+    }
+}
+```
+
+```java
+
+Utils.print("Hello");
+Utils.print(123);
+```
+
+
