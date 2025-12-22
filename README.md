@@ -889,3 +889,4 @@ Utils.print(123);
 ```
 
 
+[JDBC İLE VERİTABANI YAZISI İÇİN TIKLAYIN](JDBC.md)
