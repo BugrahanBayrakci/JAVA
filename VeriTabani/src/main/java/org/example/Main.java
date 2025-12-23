@@ -1,20 +1,26 @@
 package org.example;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
+import java.sql.*;
 
 
 public class Main {
-    static void main() {
-        String url = "jdbc:mysql://localhost:3306/world?useSSL=false&serverTimezone=UTC";
-        String user = "root";
-        String password = "12345";
 
-        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+
+    static void main() {
+
+        dbHelper helper=new dbHelper();
+        java.sql.Statement statement =null;
+        ResultSet resultSet;
+
+        try (Connection conn = helper.getConnection() ) {
+            statement=conn.createStatement();
+            resultSet=statement.executeQuery("select  Code ,name from country ");
+            while(resultSet.next()){
+
+                System.out.println(resultSet.getString("Name"));
+            }
             System.out.println("MySQL baglandi");
         } catch (SQLException e) {
-            e.printStackTrace();
+            helper.showError(e);
         }
     }
     }
