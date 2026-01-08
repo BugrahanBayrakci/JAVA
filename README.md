@@ -155,7 +155,7 @@ Customer c1 = new Customer();
 Customer c2 = c1;
 c2.name = "Ali"; // c1 de etkilenir
 ```
-
+constructor dönüş tipi yoktur.
 ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
 
 ### POLYMORPHISM

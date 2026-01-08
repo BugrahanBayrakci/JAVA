@@ -5,7 +5,7 @@ package org.example;
 public class Main {
     static void main() {
 
-        System.out.println("Merhaba Java!");
+      /*  System.out.println("Merhaba Java!");
         String isim = "bugor";
         System.out.println(isim);
         char harf= 'd';
@@ -166,6 +166,18 @@ public class Main {
 
 
 
+
+
+
+
+
+
+
+*/
+
+    Customer customer=new Customer("Bugra","Bayrakci",23);
+
+    System.out.println(customer.getSoyad());
 
 
 
